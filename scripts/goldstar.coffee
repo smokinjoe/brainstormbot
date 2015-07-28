@@ -17,5 +17,6 @@ module.exports = (robot) ->
     msg.send msg.match[1] + " gets a gold star!"
 
   robot.respond /at least (.*?) tried/i, (msg) ->
+    subject = msg.match[1] === "I" ? "you" : msg.match[1]
     msg.send "http://i.imgur.com/7DvOfQy.jpg"
-    msg.send "There may be *some* shame in trying, " + msg.match[1]
+    msg.send "There may be *some* shame in trying, " + subject
