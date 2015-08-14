@@ -26,10 +26,10 @@
 # Instead, let's just perform all the magic in here!
 
 module.exports = (robot) ->
-	robot.respond /(.*?) want to play/i, (msg) ->
+  robot.respond /(.*?) want to play/i, (msg) ->
     players = msg.match[1].split /,/
     teams = formTeams(players)
-      msg.send teams
+    msg.send teams
 
 
 shuffle = (arg) ->
@@ -60,7 +60,7 @@ randChunkSplit = (arr, min, max) ->
     arrs.push(arr.splice(index, size))
 
   return arrs
-  
+
 
 formTeams = (players) ->
   players = players || []
