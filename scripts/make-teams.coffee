@@ -14,9 +14,8 @@ module.exports = (robot) ->
 
   robot.respond /(.*?) want to play/i, (msg) ->
     tmp = msg.match[1].split /,/
-    http msg, 'http://localhost:3000/api/v1/form_teams', tmp, (response) ->
+    http msg, 'http://localhost:3000/api/v1/form_teams', tmp, (error, response, body) ->
       msg.send response
-
 
 http = (msg, url, obj, cb) ->
 	msg.http(url)
