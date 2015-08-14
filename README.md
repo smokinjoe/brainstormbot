@@ -190,7 +190,3 @@ you're having issues.
 ## Thanks
 
 Special thanks to [Robohash](http://robohash.org) for the sweet logo :)
-
-## JOE's shit
-
-env BUILDPACK_URL=https://github.com/heroku/heroku-buildpack-nodejs HUBOT_HEROKU_KEEPALIVE_URL=https://brainstormbot.herokuapp.com HUBOT_HIPCHAT_JID=asf@chat.hipchat.com HUBOT_HIPCHAT_PASSWORD=asdf bin/hubot -a shell
