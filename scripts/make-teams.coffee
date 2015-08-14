@@ -36,11 +36,11 @@ shuffle = (arg) ->
   x = j = arg.length
   for i in [arg.length...0]
     j = Math.floor(Math.random() * i)
-    x = o[--i]
-    o[i] = o[j]
-    o[j] = x
+    x = arg[--i]
+    arg[i] = arg[j]
+    arg[j] = x
 
-  return o
+  return arg
 
 
 getRandomArbitrary = (min, max) ->
