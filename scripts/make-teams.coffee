@@ -27,24 +27,22 @@
 
 module.exports = (robot) ->
   robot.respond /(.*?) want to play/i, (msg) ->
-    players = msg.match[1].split /,/
-    cleansePlayers players
+    players = cleansePlayers msg.match[1].split /,/
     teams = formTeams players
-    console.log teams
-
-    teams.clean("")
-    
-    console.log teams
     for i in [0...teams.length]
       msg.send "Team " + (i+1) + ": " + teams[i]
 
 
 cleansePlayers = (players) ->
-  
+  for i in [0...players.length]
+    players[i] = players[i].replace(/\s+/g,"")
+
+  return players;
+
 
 # Array.prototype.clean = function(deleteValue) {
 #   for (var i = 0; i < this.length; i++) {
-#     if (this[i] == deleteValue) {         
+#     if (this[i] == deleteValue) {
 #       this.splice(i, 1);
 #       i--;
 #     }
@@ -52,14 +50,13 @@ cleansePlayers = (players) ->
 #   return this;
 # };
 
-Array.prototype.clean = (arg) ->
-  for i in [0...this.length]
-    if (this[i] == arg)
-      this.splice(i, 1);
-      i--
+cleanseTeams = (arg) ->
+  result = []
+  for i in [0...arg.length]
+    if (arg[i].length > 0)
+      result.push(arg[i])
 
-  return this
-
+  return result
 
 
 shuffle = (arg) ->
@@ -97,4 +94,5 @@ formTeams = (players) ->
   numPlayers = players.length
   groupCount = Math.ceil(numPlayers / 2)
   playerList = shuffle(players)
-  return randChunkSplit(playerList, 2)
+  teams = randChunkSplit(playerList, 2)
+  return cleanseTeams teams
