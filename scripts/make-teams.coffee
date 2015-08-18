@@ -29,11 +29,12 @@ module.exports = (robot) ->
   robot.respond /(.*?) want to play/i, (msg) ->
     players = cleansePlayers msg.match[1].split /,/
     teams = formTeams players
-    msg.send 'The upcoming matchup will feature the following teams:'
+    message = []
+    message.push('The upcoming matchup will feature the following teams:')
     for i in [0...teams.length]
-      msg.send teamName()
-      msg.send formatTeam teams[i]
-
+      message.push(teamName())
+      message.push(formatTeam teams[i])
+    msg.send message.join('\n')
 
 cleansePlayers = (players) ->
   for i in [0...players.length]
