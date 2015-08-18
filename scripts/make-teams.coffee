@@ -29,8 +29,11 @@ module.exports = (robot) ->
   robot.respond /(.*?) want to play/i, (msg) ->
     players = cleansePlayers msg.match[1].split /,/
     teams = formTeams players
+    msg.send 'The upcoming matchup will feature the following teams:'
     for i in [0...teams.length]
-      msg.send "Team " + (i+1) + ": " + teams[i]
+      msg.send teamName()
+      msg.send teams[i]
+      #msg.send "Team " + (i+1) + ": " + teams[i]
 
 
 cleansePlayers = (players) ->
@@ -47,6 +50,27 @@ cleanseTeams = (arg) ->
       result.push(arg[i])
 
   return result
+
+
+teamName = () ->
+  ADJECTIVES = ['Generous', 'Springfield', 'Risky', 'Hilarious', 'Just', 'Gracious', 'Adjective', 'Sinister', 'Chaotic Neutral', 'Dynamic', 'Silent', 'Quite Skilled', 'Fairly Ambiguous', 'Thunderous', 'Cat.']
+  VERBS = ['Thundering', 'Screaming', 'Flying', 'Giggling', 'Running', 'Launching', 'Coding', 'Verbing', 'Searching', 'Cooking', 'Juggling', 'Rambling', 'Cat.']
+  NOUNS = ['Funk', 'Earthlings', 'Vengadesh', 'Coders', 'Noun', 'Rattlers', 'Cyclones', 'Team', 'Pair', 'Duo', 'Waffles', 'Snakes', 'Treeslugs', 'Wildcats', 'Isotopes', 'Cat.']
+
+  adjectiveIndex = Math.floor(( Math.random() * ADJECTIVES.length ))
+  adjective = ADJECTIVES[adjectiveIndex]
+
+  verbIndex = Math.floor(( Math.random() * VERBS.length ))
+  verb = VERBS[verbIndex]
+
+  nounIndex = Math.floor(( Math.random() * NOUNS.length ))
+  noun = NOUNS[nounIndex]
+
+  if ( Math.floor(( Math.random() * 4 )) == 1 )
+    return 'Team: The ' + verb + ' ' + noun
+  else
+    return 'Team: The ' + adjective + ' ' + noun
+
 
 
 shuffle = (arg) ->
@@ -86,3 +110,39 @@ formTeams = (players) ->
   playerList = shuffle(players)
   teams = randChunkSplit(playerList, 2)
   return cleanseTeams teams
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
