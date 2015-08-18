@@ -40,16 +40,6 @@ cleansePlayers = (players) ->
   return players;
 
 
-# Array.prototype.clean = function(deleteValue) {
-#   for (var i = 0; i < this.length; i++) {
-#     if (this[i] == deleteValue) {
-#       this.splice(i, 1);
-#       i--;
-#     }
-#   }
-#   return this;
-# };
-
 cleanseTeams = (arg) ->
   result = []
   for i in [0...arg.length]
