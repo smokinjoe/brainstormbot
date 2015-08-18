@@ -28,8 +28,38 @@
 module.exports = (robot) ->
   robot.respond /(.*?) want to play/i, (msg) ->
     players = msg.match[1].split /,/
-    teams = formTeams(players)
-    msg.send teams
+    cleansePlayers players
+    teams = formTeams players
+    console.log teams
+
+    teams.clean("")
+    
+    console.log teams
+    for i in [0...teams.length]
+      msg.send "Team " + (i+1) + ": " + teams[i]
+
+
+cleansePlayers = (players) ->
+  
+
+# Array.prototype.clean = function(deleteValue) {
+#   for (var i = 0; i < this.length; i++) {
+#     if (this[i] == deleteValue) {         
+#       this.splice(i, 1);
+#       i--;
+#     }
+#   }
+#   return this;
+# };
+
+Array.prototype.clean = (arg) ->
+  for i in [0...this.length]
+    if (this[i] == arg)
+      this.splice(i, 1);
+      i--
+
+  return this
+
 
 
 shuffle = (arg) ->
