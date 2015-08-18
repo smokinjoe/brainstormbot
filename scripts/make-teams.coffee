@@ -25,93 +25,93 @@
 
 # Instead, let's just perform all the magic in here!
 
-# module.exports = (robot) ->
-#   robot.respond /(.*?) want to play/i, (msg) ->
-#     players = cleansePlayers msg.match[1].split /,/
-#     teams = formTeams players
-#     msg.send 'The upcoming matchup will feature the following teams:'
-#     for i in [0...teams.length]
-#       msg.send teamName()
-#       msg.send formatTeam teams[i]
+module.exports = (robot) ->
+  robot.respond /(.*?) want to play/i, (msg) ->
+    players = cleansePlayers msg.match[1].split /,/
+    teams = formTeams players
+    msg.send 'The upcoming matchup will feature the following teams:'
+    for i in [0...teams.length]
+      msg.send teamName()
+      msg.send formatTeam teams[i]
 
 
-# cleansePlayers = (players) ->
-#   for i in [0...players.length]
-#     players[i] = players[i].replace(/\s+/g,"")
+cleansePlayers = (players) ->
+  for i in [0...players.length]
+    players[i] = players[i].replace(/\s+/g,"")
 
-#   return players;
-
-
-# cleanseTeams = (arg) ->
-#   result = []
-#   for i in [0...arg.length]
-#     if (arg[i].length > 0)
-#       result.push(arg[i])
-
-#   return result
+  return players;
 
 
-# teamName = () ->
-#   ADJECTIVES = ['Generous', 'Springfield', 'Risky', 'Hilarious', 'Just', 'Gracious', 'Adjective', 'Sinister', 'Chaotic Neutral', 'Dynamic', 'Silent', 'Quite Skilled', 'Really Bizarre', 'Thunderous', 'Cat.']
-#   VERBS = ['Thundering', 'Screaming', 'Flying', 'Giggling', 'Running', 'Launching', 'Coding', 'Verbing', 'Searching', 'Cooking', 'Juggling', 'Rambling', 'Cat.']
-#   NOUNS = ['Funk', 'Earthlings', 'Vengadesh', 'Coders', 'Noun', 'Rattlers', 'Cyclones', 'Team', 'Pair', 'Duo', 'Waffles', 'Snakes', 'Treeslugs', 'Wildcats', 'Isotopes', 'Bazaar', 'Home Team', 'Away Team', 'Replacements', 'Barnstormers', 'Mimes', 'Cat.']
+cleanseTeams = (arg) ->
+  result = []
+  for i in [0...arg.length]
+    if (arg[i].length > 0)
+      result.push(arg[i])
 
-#   adjectiveIndex = Math.floor(( Math.random() * ADJECTIVES.length ))
-#   adjective = ADJECTIVES[adjectiveIndex]
-
-#   verbIndex = Math.floor(( Math.random() * VERBS.length ))
-#   verb = VERBS[verbIndex]
-
-#   nounIndex = Math.floor(( Math.random() * NOUNS.length ))
-#   noun = NOUNS[nounIndex]
-
-#   if ( Math.floor(( Math.random() * 4 )) == 1 )
-#     return 'The ' + verb + ' ' + noun + ':'
-#   else
-#     return 'The ' + adjective + ' ' + noun + ':'
+  return result
 
 
-# formatTeam = (team) ->
-#   return team[0] + ' and ' + team[1]
+teamName = () ->
+  ADJECTIVES = ['Generous', 'Springfield', 'Risky', 'Hilarious', 'Just', 'Gracious', 'Adjective', 'Sinister', 'Chaotic Neutral', 'Dynamic', 'Silent', 'Quite Skilled', 'Really Bizarre', 'Thunderous', 'Cat.']
+  VERBS = ['Thundering', 'Screaming', 'Flying', 'Giggling', 'Running', 'Launching', 'Coding', 'Verbing', 'Searching', 'Cooking', 'Juggling', 'Rambling', 'Cat.']
+  NOUNS = ['Funk', 'Earthlings', 'Vengadesh', 'Coders', 'Noun', 'Rattlers', 'Cyclones', 'Team', 'Pair', 'Duo', 'Waffles', 'Snakes', 'Treeslugs', 'Wildcats', 'Isotopes', 'Bazaar', 'Home Team', 'Away Team', 'Replacements', 'Barnstormers', 'Mimes', 'Cat.']
+
+  adjectiveIndex = Math.floor(( Math.random() * ADJECTIVES.length ))
+  adjective = ADJECTIVES[adjectiveIndex]
+
+  verbIndex = Math.floor(( Math.random() * VERBS.length ))
+  verb = VERBS[verbIndex]
+
+  nounIndex = Math.floor(( Math.random() * NOUNS.length ))
+  noun = NOUNS[nounIndex]
+
+  if ( Math.floor(( Math.random() * 4 )) == 1 )
+    return 'The ' + verb + ' ' + noun + ':'
+  else
+    return 'The ' + adjective + ' ' + noun + ':'
 
 
-# shuffle = (arg) ->
-#   x = j = arg.length
-#   for i in [arg.length...0]
-#     j = Math.floor(Math.random() * i)
-#     x = arg[--i]
-#     arg[i] = arg[j]
-#     arg[j] = x
-
-#   return arg
+formatTeam = (team) ->
+  return team[0] + ' and ' + team[1]
 
 
-# getRandomArbitrary = (min, max) ->
-#   return Math.random() * (max - min) + min
+shuffle = (arg) ->
+  x = j = arg.length
+  for i in [arg.length...0]
+    j = Math.floor(Math.random() * i)
+    x = arg[--i]
+    arg[i] = arg[j]
+    arg[j] = x
+
+  return arg
 
 
-# randChunkSplit = (arr, min, max) ->
-#   arr = arr.slice()
-#   arrs = []
-#   size = 1
-#   min = min || 1
-#   max = max || min || 1
-
-#   for i in [arr.length...0]
-#     index = getRandomArbitrary(0, arr.length - 1)
-#     size = Math.min(max, Math.floor((Math.random() * max) + min))
-#     arrs.push(arr.splice(index, size))
-
-#   return arrs
+getRandomArbitrary = (min, max) ->
+  return Math.random() * (max - min) + min
 
 
-# formTeams = (players) ->
-#   players = players || []
-#   numPlayers = players.length
-#   groupCount = Math.ceil(numPlayers / 2)
-#   playerList = shuffle(players)
-#   teams = randChunkSplit(playerList, 2)
-#   return cleanseTeams teams
+randChunkSplit = (arr, min, max) ->
+  arr = arr.slice()
+  arrs = []
+  size = 1
+  min = min || 1
+  max = max || min || 1
+
+  for i in [arr.length...0]
+    index = getRandomArbitrary(0, arr.length - 1)
+    size = Math.min(max, Math.floor((Math.random() * max) + min))
+    arrs.push(arr.splice(index, size))
+
+  return arrs
+
+
+formTeams = (players) ->
+  players = players || []
+  numPlayers = players.length
+  groupCount = Math.ceil(numPlayers / 2)
+  playerList = shuffle(players)
+  teams = randChunkSplit(playerList, 2)
+  return cleanseTeams teams
 
 
 
