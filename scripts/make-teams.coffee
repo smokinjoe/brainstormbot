@@ -32,8 +32,7 @@ module.exports = (robot) ->
     msg.send 'The upcoming matchup will feature the following teams:'
     for i in [0...teams.length]
       msg.send teamName()
-      msg.send teams[i]
-      #msg.send "Team " + (i+1) + ": " + teams[i]
+      msg.send formatTeam teams[i]
 
 
 cleansePlayers = (players) ->
@@ -53,9 +52,9 @@ cleanseTeams = (arg) ->
 
 
 teamName = () ->
-  ADJECTIVES = ['Generous', 'Springfield', 'Risky', 'Hilarious', 'Just', 'Gracious', 'Adjective', 'Sinister', 'Chaotic Neutral', 'Dynamic', 'Silent', 'Quite Skilled', 'Fairly Ambiguous', 'Thunderous', 'Cat.']
+  ADJECTIVES = ['Generous', 'Springfield', 'Risky', 'Hilarious', 'Just', 'Gracious', 'Adjective', 'Sinister', 'Chaotic Neutral', 'Dynamic', 'Silent', 'Quite Skilled', 'Really Bizarre', 'Thunderous', 'Cat.']
   VERBS = ['Thundering', 'Screaming', 'Flying', 'Giggling', 'Running', 'Launching', 'Coding', 'Verbing', 'Searching', 'Cooking', 'Juggling', 'Rambling', 'Cat.']
-  NOUNS = ['Funk', 'Earthlings', 'Vengadesh', 'Coders', 'Noun', 'Rattlers', 'Cyclones', 'Team', 'Pair', 'Duo', 'Waffles', 'Snakes', 'Treeslugs', 'Wildcats', 'Isotopes', 'Cat.']
+  NOUNS = ['Funk', 'Earthlings', 'Vengadesh', 'Coders', 'Noun', 'Rattlers', 'Cyclones', 'Team', 'Pair', 'Duo', 'Waffles', 'Snakes', 'Treeslugs', 'Wildcats', 'Isotopes', 'Bazaar', 'Home Team', 'Away Team', 'Replacements', 'Barnstormers', 'Mimes', 'Cat.']
 
   adjectiveIndex = Math.floor(( Math.random() * ADJECTIVES.length ))
   adjective = ADJECTIVES[adjectiveIndex]
@@ -67,10 +66,13 @@ teamName = () ->
   noun = NOUNS[nounIndex]
 
   if ( Math.floor(( Math.random() * 4 )) == 1 )
-    return 'Team: The ' + verb + ' ' + noun
+    return 'The ' + verb + ' ' + noun + ':'
   else
-    return 'Team: The ' + adjective + ' ' + noun
+    return 'The ' + adjective + ' ' + noun + ':'
 
+
+formatTeam = (team) ->
+  return team[0] + ' and ' + team[1]
 
 
 shuffle = (arg) ->
