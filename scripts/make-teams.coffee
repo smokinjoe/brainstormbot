@@ -27,9 +27,52 @@
 
 module.exports = (robot) ->
   robot.respond /(.*?) want to play/i, (msg) ->
-    players = msg.match[1].split /,/
-    teams = formTeams(players)
-    msg.send teams
+    players = cleansePlayers msg.match[1].split /,/
+    teams = formTeams players
+    msg.send 'The upcoming matchup will feature the following teams:'
+    for i in [0...teams.length]
+      msg.send teamName()
+      msg.send formatTeam teams[i]
+
+
+cleansePlayers = (players) ->
+  for i in [0...players.length]
+    players[i] = players[i].replace(/\s+/g,"")
+
+  return players;
+
+
+cleanseTeams = (arg) ->
+  result = []
+  for i in [0...arg.length]
+    if (arg[i].length > 0)
+      result.push(arg[i])
+
+  return result
+
+
+teamName = () ->
+  ADJECTIVES = ['Generous', 'Springfield', 'Risky', 'Hilarious', 'Just', 'Gracious', 'Adjective', 'Sinister', 'Chaotic Neutral', 'Dynamic', 'Silent', 'Quite Skilled', 'Really Bizarre', 'Thunderous', 'Cat.']
+  VERBS = ['Thundering', 'Screaming', 'Flying', 'Giggling', 'Running', 'Launching', 'Coding', 'Verbing', 'Searching', 'Cooking', 'Juggling', 'Rambling', 'Cat.']
+  NOUNS = ['Funk', 'Earthlings', 'Vengadesh', 'Coders', 'Noun', 'Rattlers', 'Cyclones', 'Team', 'Pair', 'Duo', 'Waffles', 'Snakes', 'Treeslugs', 'Wildcats', 'Isotopes', 'Bazaar', 'Home Team', 'Away Team', 'Replacements', 'Barnstormers', 'Mimes', 'Cat.']
+
+  adjectiveIndex = Math.floor(( Math.random() * ADJECTIVES.length ))
+  adjective = ADJECTIVES[adjectiveIndex]
+
+  verbIndex = Math.floor(( Math.random() * VERBS.length ))
+  verb = VERBS[verbIndex]
+
+  nounIndex = Math.floor(( Math.random() * NOUNS.length ))
+  noun = NOUNS[nounIndex]
+
+  if ( Math.floor(( Math.random() * 4 )) == 1 )
+    return 'The ' + verb + ' ' + noun + ':'
+  else
+    return 'The ' + adjective + ' ' + noun + ':'
+
+
+formatTeam = (team) ->
+  return team[0] + ' and ' + team[1]
 
 
 shuffle = (arg) ->
@@ -67,4 +110,41 @@ formTeams = (players) ->
   numPlayers = players.length
   groupCount = Math.ceil(numPlayers / 2)
   playerList = shuffle(players)
-  return randChunkSplit(playerList, 2)
+  teams = randChunkSplit(playerList, 2)
+  return cleanseTeams teams
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
