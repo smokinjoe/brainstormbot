@@ -27,7 +27,7 @@
 
 module.exports = (robot) ->
   robot.respond /(.*?) want to play/i, (msg) ->
-    players = cleansePlayers msg.match[1].split /,/
+    players = cleansePlayers msg.match[1]
     teams = formTeams players
     message = []
     message.push('The upcoming matchup will feature the following teams:')
@@ -36,7 +36,9 @@ module.exports = (robot) ->
       message.push(formatTeam teams[i])
     msg.send message.join('\n')
 
-cleansePlayers = (players) ->
+cleansePlayers = (match) ->
+  players = match.split /,|and/
+
   for i in [0...players.length]
     players[i] = players[i].replace(/\s+/g,"")
 
@@ -53,9 +55,9 @@ cleanseTeams = (arg) ->
 
 
 teamName = () ->
-  ADJECTIVES = ['Generous', 'Springfield', 'Risky', 'Hilarious', 'Just', 'Gracious', 'Adjective', 'Sinister', 'Chaotic Neutral', 'Dynamic', 'Silent', 'Quite Skilled', 'Really Bizarre', 'Thunderous', 'Cat.']
-  VERBS = ['Thundering', 'Screaming', 'Flying', 'Giggling', 'Running', 'Launching', 'Coding', 'Verbing', 'Searching', 'Cooking', 'Juggling', 'Rambling', 'Cat.']
-  NOUNS = ['Funk', 'Earthlings', 'Vengadesh', 'Coders', 'Noun', 'Rattlers', 'Cyclones', 'Team', 'Pair', 'Duo', 'Waffles', 'Snakes', 'Treeslugs', 'Wildcats', 'Isotopes', 'Bazaar', 'Home Team', 'Away Team', 'Replacements', 'Barnstormers', 'Mimes', 'Cat.']
+  ADJECTIVES = ['Generous', 'Springfield', 'Risky', 'Hilarious', 'Just', 'Gracious', 'Adjective', 'Sinister', 'Chaotic Neutral', 'Dynamic', 'Silent', 'Quite Skilled', 'Really Bizarre', 'Thunderous']
+  VERBS = ['Thundering', 'Screaming', 'Flying', 'Giggling', 'Running', 'Launching', 'Coding', 'Verbing', 'Searching', 'Cooking', 'Juggling', 'Rambling']
+  NOUNS = ['Funk', 'Earthlings', 'Vengadesh', 'Coders', 'Noun', 'Rattlers', 'Cyclones', 'Team', 'Pair', 'Duo', 'Waffles', 'Snakes', 'Treeslugs', 'Wildcats', 'Isotopes', 'Bazaar', 'Home Team', 'Away Team', 'Replacements', 'Barnstormers', 'Ponies', 'Mimes']
 
   adjectiveIndex = Math.floor(( Math.random() * ADJECTIVES.length ))
   adjective = ADJECTIVES[adjectiveIndex]
@@ -66,7 +68,7 @@ teamName = () ->
   nounIndex = Math.floor(( Math.random() * NOUNS.length ))
   noun = NOUNS[nounIndex]
 
-  if ( Math.floor(( Math.random() * 4 )) == 1 )
+  if ( Math.floor(( Math.random() * 2 )) == 1 )
     return 'The ' + verb + ' ' + noun + ':'
   else
     return 'The ' + adjective + ' ' + noun + ':'
