@@ -27,7 +27,7 @@
 
 module.exports = (robot) ->
   robot.respond /(.*?) want to play/i, (msg) ->
-    players = cleansePlayers msg.match[1].split /,/
+    players = cleansePlayers msg.match[1]
     teams = formTeams players
     message = []
     message.push('The upcoming matchup will feature the following teams:')
@@ -36,7 +36,9 @@ module.exports = (robot) ->
       message.push(formatTeam teams[i])
     msg.send message.join('\n')
 
-cleansePlayers = (players) ->
+cleansePlayers = (match) ->
+  players = match.split /,|and/
+
   for i in [0...players.length]
     players[i] = players[i].replace(/\s+/g,"")
 
