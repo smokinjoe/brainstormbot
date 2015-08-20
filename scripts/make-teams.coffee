@@ -40,9 +40,9 @@ cleanseTeams = (arg) ->
 
 
 teamName = () ->
-  ADJECTIVES = ['Generous', 'Springfield', 'Risky', 'Hilarious', 'Just', 'Gracious', 'Adjective', 'Sinister', 'Chaotic Neutral', 'Dynamic', 'Silent', 'Quite Skilled', 'Really Bizarre', 'Thunderous', 'Rather Sluggish', 'Zombie', 'Always Optimistic', 'Misfit', 'Buffalo']
-  VERBS = ['Thundering', 'Screaming', 'Flying', 'Giggling', 'Running', 'Launching', 'Coding', 'Verbing', 'Searching', 'Cooking', 'Juggling', 'Rambling', 'Raving', 'Falling', 'Ranting', 'Laughing', 'Merging', 'Conquering', 'Somewhat Challenging', 'Charging', 'Buffalo']
-  NOUNS = ['Funk', 'Earthlings', 'Vengadesh', 'Coders', 'Nouns', 'Rattlers', 'Cyclones', 'Team', 'Pair', 'Duo', 'Waffles', 'Snakes', 'Treeslugs', 'Wildcats', 'Isotopes', 'Bazaar', 'Home Team', 'Away Team', 'Replacements', 'Barnstormers', 'Ponies', 'Mimes', 'Optimists', 'Pessimists', 'Challengers', 'Buffalo']
+  ADJECTIVES = ['Generous', 'Springfield', 'Risky', 'Hilarious', 'Just', 'Gracious', 'Adjective', 'Sinister', 'Chaotic Neutral', 'Dynamic', 'Silent', 'Quite Skilled', 'Really Bizarre', 'Thunderous', 'Rather Sluggish', 'Zombie', 'Always Optimistic', 'Misfit', 'Buffalo', 'Savage']
+  VERBS = ['Thundering', 'Screaming', 'Flying', 'Giggling', 'Running', 'Launching', 'Coding', 'Verbing', 'Searching', 'Cooking', 'Juggling', 'Rambling', 'Raving', 'Falling', 'Ranting', 'Laughing', 'Merging', 'Conquering', 'Somewhat Challenging', 'Charging', 'Buffalo', 'Savaging', 'Teasing']
+  NOUNS = ['Funk', 'Earthlings', 'Vengadesh', 'Coders', 'Nouns', 'Rattlers', 'Cyclones', 'Team', 'Pair', 'Duo', 'Waffles', 'Snakes', 'Treeslugs', 'Wildcats', 'Isotopes', 'Bazaar', 'Home Team', 'Away Team', 'Replacements', 'Barnstormers', 'Ponies', 'Mimes', 'Optimists', 'Pessimists', 'Challengers', 'Buffalo', 'Savages', 'Rainbows', 'Pop-Tarts™']
 
   adjectiveIndex = Math.floor(( Math.random() * ADJECTIVES.length ))
   adjective = ADJECTIVES[adjectiveIndex]
@@ -98,39 +98,3 @@ formTeams = (players) ->
   playerList = shuffle(players)
   teams = randChunkSplit(playerList, 2)
   return cleanseTeams teams
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
