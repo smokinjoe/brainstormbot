@@ -10,31 +10,16 @@
 # Commands:
 #   "hubot <names> want to play" will form teams with the names
 
-# Wanted to be fancy and do it via my api
-#module.exports = (robot) ->
-#
-#  robot.respond /(.*?) want to play/i, (msg) ->
-#    tmp = msg.match[1].split /,/
-#    http msg, 'http://localhost:3000/api/v1/form_teams', tmp, (error, response, body) ->
-#      msg.send response
-#
-#http = (msg, url, obj, cb) ->
-#	msg.http(url)
-#    .query(players: obj)
-#    .get() cb
-
-# Instead, let's just perform all the magic in here!
-
 module.exports = (robot) ->
-  robot.respond /(.*?) want to play/i, (msg) ->
-    players = cleansePlayers msg.match[1]
+  robot.respond /(.*?) want to play/i, (res) ->
+    players = cleansePlayers res.match[1]
     teams = formTeams players
     message = []
     message.push('The upcoming matchup will feature the following teams:')
     for i in [0...teams.length]
       message.push(teamName())
       message.push(formatTeam teams[i])
-    msg.send message.join('\n')
+    res.send message.join('\n')
 
 cleansePlayers = (match) ->
   players = match.split /,|and/
@@ -55,16 +40,14 @@ cleanseTeams = (arg) ->
 
 
 teamName = () ->
-  ADJECTIVES = ['Generous', 'Springfield', 'Risky', 'Hilarious', 'Just', 'Gracious', 'Adjective', 'Sinister', 'Chaotic Neutral', 'Dynamic', 'Silent', 'Quite Skilled', 'Really Bizarre', 'Thunderous', 'Rather Sluggish', 'Zombie', 'Always Optimistic', 'Misfit', 'Buffalo']
-  VERBS = ['Thundering', 'Screaming', 'Flying', 'Giggling', 'Running', 'Launching', 'Coding', 'Verbing', 'Searching', 'Cooking', 'Juggling', 'Rambling', 'Raving', 'Falling', 'Ranting', 'Laughing', 'Merging', 'Conquering', 'Somewhat Challenging', 'Charging', 'Buffalo']
-  NOUNS = ['Funk', 'Earthlings', 'Vengadesh', 'Coders', 'Nouns', 'Rattlers', 'Cyclones', 'Team', 'Pair', 'Duo', 'Waffles', 'Snakes', 'Treeslugs', 'Wildcats', 'Isotopes', 'Bazaar', 'Home Team', 'Away Team', 'Replacements', 'Barnstormers', 'Ponies', 'Mimes', 'Optimists', 'Pessimists', 'Challengers', 'Buffalo']
+  ADJECTIVES = ['Generous', 'Springfield', 'Risky', 'Hilarious', 'Just', 'Gracious', 'Adjective', 'Sinister', 'Chaotic Neutral', 'Dynamic', 'Silent', 'Quite Skilled', 'Really Bizarre', 'Thunderous', 'Rather Sluggish', 'Zombie', 'Always Optimistic', 'Misfit', 'Buffalo', 'Savage']
+  VERBS = ['Thundering', 'Screaming', 'Flying', 'Giggling', 'Running', 'Launching', 'Coding', 'Verbing', 'Searching', 'Cooking', 'Juggling', 'Rambling', 'Raving', 'Falling', 'Ranting', 'Laughing', 'Merging', 'Conquering', 'Somewhat Challenging', 'Charging', 'Buffalo', 'Savaging', 'Teasing']
+  NOUNS = ['Funk', 'Earthlings', 'Vengadesh', 'Coders', 'Nouns', 'Rattlers', 'Cyclones', 'Team', 'Pair', 'Duo', 'Waffles', 'Snakes', 'Treeslugs', 'Wildcats', 'Isotopes', 'Bazaar', 'Home Team', 'Away Team', 'Replacements', 'Barnstormers', 'Ponies', 'Mimes', 'Optimists', 'Pessimists', 'Challengers', 'Buffalo', 'Savages', 'Rainbows', 'Pop-Tarts™']
 
   adjectiveIndex = Math.floor(( Math.random() * ADJECTIVES.length ))
   adjective = ADJECTIVES[adjectiveIndex]
-
   verbIndex = Math.floor(( Math.random() * VERBS.length ))
   verb = VERBS[verbIndex]
-
   nounIndex = Math.floor(( Math.random() * NOUNS.length ))
   noun = NOUNS[nounIndex]
 
@@ -115,39 +98,3 @@ formTeams = (players) ->
   playerList = shuffle(players)
   teams = randChunkSplit(playerList, 2)
   return cleanseTeams teams
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
