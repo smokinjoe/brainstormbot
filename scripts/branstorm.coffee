@@ -40,3 +40,7 @@ module.exports = (robot) ->
   # Abe's "I used to be with it rant"
   robot.hear /times are changing\b/i, (res) ->
     res.send "https://www.youtube.com/watch?v=LV0wTtiJygY"
+  # Drinking problem?
+  robot.hear /drinking problem\b/i, (res) ->
+    res.send "That's about when my drinking problem started.."
+    res.send "http://i.imgur.com/0Wui6ZF.gifv"
