@@ -18,7 +18,5 @@ sendMessage = (res) ->
 module.exports = (robot) ->
   robot.hear /retrospective form\b/i, sendMessage
   robot.hear /retro form\b/i, sendMessage
-  robot.hear /what was that retrospective form url?/i, sendMessage
-  robot.hear /disco form\b/i, (res) ->
-    res.send "https://circa71.files.wordpress.com/2012/02/discoball3-1.gif"
+  robot.hear /what was that retrospective form url?\b/i, sendMessage
 
