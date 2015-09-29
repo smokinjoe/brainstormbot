@@ -22,25 +22,28 @@ practice = [
 
 module.exports = (robot) ->
   # Disco ball!
-  robot.hear /disco form\b/i, (res) ->
+  robot.hear /disco form/i, (res) ->
     res.send "https://circa71.files.wordpress.com/2012/02/discoball3-1.gif"
   # Disco Inferno!!
-  robot.hear /disco inferno\b/i, (res) ->
+  robot.hear /disco inferno/i, (res) ->
     res.send "Did someone say, DISCO INFERNO?"
     res.send "http://i.imgur.com/ac98Olx.jpg"
     res.send "https://www.youtube.com/watch?v=A_sY2rjxq6M"
   # Random AI pics
-  robot.hear /practice\b/i, (res) ->
+  robot.hear /practice/i, (res) ->
     res.send "Practice?"
     res.send res.random practice
   # Local Man Ruins Everything picture
-  robot.hear /you're the worst\b/i, (res) ->
+  robot.hear /you're the worst/i, (res) ->
     res.send "The WORST??"
     res send "http://i.imgur.com/soCn1os.jpg"
   # Abe's "I used to be with it rant"
-  robot.hear /times are changing\b/i, (res) ->
+  robot.hear /times are changing/i, (res) ->
     res.send "https://www.youtube.com/watch?v=LV0wTtiJygY"
   # Drinking problem?
-  robot.hear /drinking problem\b/i, (res) ->
+  robot.hear /drinking problem/i, (res) ->
     res.send "That's about when my drinking problem started.."
     res.send "http://i.imgur.com/0Wui6ZF.gifv"
+  # BYAAAAAH
+  robot.respond /can you provide me an appropriate reaction?/i, (res) ->
+    res.send "http://i.imgur.com/edPxJBV.jpg"
