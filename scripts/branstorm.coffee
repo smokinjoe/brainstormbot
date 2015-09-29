@@ -21,8 +21,22 @@ practice = [
 ]
 
 module.exports = (robot) ->
+  # Disco ball!
   robot.hear /disco form\b/i, (res) ->
     res.send "https://circa71.files.wordpress.com/2012/02/discoball3-1.gif"
+  # Disco Inferno!!
+  robot.hear /disco inferno\b/i, (res) ->
+    res.send "Did someone say, DISCO INFERNO?"
+    res.send "http://i.imgur.com/ac98Olx.jpg"
+    res.send "https://www.youtube.com/watch?v=A_sY2rjxq6M"
+  # Random AI pics
   robot.hear /practice\b/i, (res) ->
     res.send "Practice?"
     res.send res.random practice
+  # Local Man Ruins Everything picture
+  robot.hear /you're the worst\b/i, (res) ->
+    res.send "The WORST??"
+    res send "http://i.imgur.com/soCn1os.jpg"
+  # Abe's "I used to be with it rant"
+  robot.hear /times are changing\b/i, (res) ->
+    res.send "https://www.youtube.com/watch?v=LV0wTtiJygY"
