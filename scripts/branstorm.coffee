@@ -47,3 +47,7 @@ module.exports = (robot) ->
   # BYAAAAAH
   robot.respond /can you provide me an appropriate reaction?/i, (res) ->
     res.send "http://i.imgur.com/edPxJBV.jpg"
+  # randomly spit out a picture of pointing
+  # WIP: make this an array of images
+  robot.hear /I got you/i, (res) ->
+    res.send "https://s3.amazonaws.com/uploads.hipchat.com/347975/2106287/PEnUVJLDHos4li4/CI8gcWWUYAAi_0h.jpg"
