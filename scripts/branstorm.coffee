@@ -20,6 +20,11 @@ practice = [
   'http://i.imgur.com/qm0Nu6X.jpg'
 ]
 
+wat = [
+  'http://i265.photobucket.com/albums/ii203/BigMobe/Funny%20pics/watbird.jpg',
+  'http://ruby.zigzo.com/wp-content/uploads/sites/2/2013/02/wat-gigantic-duck.jpg',
+]
+
 module.exports = (robot) ->
   # Disco ball!
   robot.hear /disco form/i, (res) ->
@@ -54,3 +59,5 @@ module.exports = (robot) ->
   robot.hear /simpsons/i, (res) ->
     res.send "I'm going outside ... to *stalk* ... Lenny and Carl."
     res.send "http://i.imgur.com/JfEEuZh.png"
+  robot.hear /wat/i, (res) ->
+    res.send res.random wat
