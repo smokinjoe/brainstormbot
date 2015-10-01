@@ -51,3 +51,6 @@ module.exports = (robot) ->
   # WIP: make this an array of images
   robot.hear /I got you/i, (res) ->
     res.send "https://s3.amazonaws.com/uploads.hipchat.com/347975/2106287/PEnUVJLDHos4li4/CI8gcWWUYAAi_0h.jpg"
+  robot.hear /simpsons/i, (res) ->
+    res.send "I'm going outside ... to *stalk* ... Lenny and Carl."
+    res.send "http://i.imgur.com/JfEEuZh.png"
