@@ -61,3 +61,16 @@ module.exports = (robot) ->
     res.send "http://i.imgur.com/JfEEuZh.png"
   robot.hear /\bwat\b/i, (res) ->
     res.send res.random wat
+  # X-Files - I want to believe.
+  robot.hear /the truth/i, (res) ->
+    res.send "I want to believe."
+    res.send "https://i.imgur.com/2jsfax6.jpg"
+  # Cell wall.
+  robot.hear /cell wall/i, (res) ->
+    res.send "http://i.imgur.com/olWwOqG.jpg"
+  # Dude who microwaved cup of ramen without water
+  robot.hear /small mistake/i, (res) ->
+    res.send "http://i.imgur.com/qjujW6d.png"
+  # Xzibit - if string contains "put a [word] in your [word]", show image of Xzibit.
+  robot.hear /put a (.*) in your (.*)/i, (res) ->
+    res.send "https://ionetheurbandaily.files.wordpress.com/2011/01/xzibit-1.jpg"
