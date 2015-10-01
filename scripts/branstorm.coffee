@@ -59,5 +59,5 @@ module.exports = (robot) ->
   robot.hear /simpsons/i, (res) ->
     res.send "I'm going outside ... to *stalk* ... Lenny and Carl."
     res.send "http://i.imgur.com/JfEEuZh.png"
-  robot.hear /wat/i, (res) ->
+  robot.hear /\bwat\b/i, (res) ->
     res.send res.random wat
