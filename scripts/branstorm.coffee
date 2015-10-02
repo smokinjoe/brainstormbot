@@ -26,6 +26,30 @@ wat = [
   '( ͠° ͟ʖ ͡°)'
 ]
 
+simpsons = [
+  {
+    image: 'https://i.imgur.com/wysPGL6.jpg',
+    text: 'North Haverbrook? Where have I heard that name before? Oh no, OH NO!'
+  },
+  {
+    image: "http://i.imgur.com/JfEEuZh.png",
+    text: "I'm going outside ... to *stalk* ... Lenny and Carl."
+  },
+  { image: 'https://i.imgur.com/2yb1lSo.jpg' },
+  { image: 'https://i.imgur.com/rpA5jMS.jpg' },
+  { image: 'https://i.imgur.com/PjRwU9L.jpg' },
+  { image: 'http://i.imgur.com/TJYH4fd.gif' },
+  {
+    image: 'https://i.imgur.com/0ivzKZh.jpg',
+    text: 'Aurora Borealis'
+  },
+  { image: 'http://i.imgur.com/dupyWCK.gif' },
+  {
+    image: 'https://i.imgur.com/SEVz2GC.jpg',
+    text: "Now, you boy!"
+  }
+]
+
 module.exports = (robot) ->
   # Disco ball!
   robot.hear /disco form/i, (res) ->
@@ -57,9 +81,10 @@ module.exports = (robot) ->
   # WIP: make this an array of images
   robot.hear /I got you/i, (res) ->
     res.send "https://s3.amazonaws.com/uploads.hipchat.com/347975/2106287/PEnUVJLDHos4li4/CI8gcWWUYAAi_0h.jpg"
-  robot.hear /simpsons/i, (res) ->
-    res.send "I'm going outside ... to *stalk* ... Lenny and Carl."
-    res.send "http://i.imgur.com/JfEEuZh.png"
+  robot.hear /\bThe Simpsons\b/, (res) ->
+    simpson = res.random simpsons
+    res.send simpson.image if simpson.image
+    res.send simpson.text if simpson.text
   robot.hear /\bwat\b/i, (res) ->
     res.send res.random wat
   # X-Files - I want to believe.
