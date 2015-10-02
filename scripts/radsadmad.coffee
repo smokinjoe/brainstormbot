@@ -12,8 +12,8 @@
 
 url = process.env.ELLUCIAN_RETROSPECTIVE_URL || 'http://asdf.com/'
 sendMessage = (res) ->
-  for i in [0...5]
-    res.send url
+  #for i in [0...5]
+  res.send url
 
 module.exports = (robot) ->
   robot.hear /retrospective form\b/i, sendMessage
