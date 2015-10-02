@@ -23,6 +23,7 @@ practice = [
 wat = [
   'http://i265.photobucket.com/albums/ii203/BigMobe/Funny%20pics/watbird.jpg',
   'http://ruby.zigzo.com/wp-content/uploads/sites/2/2013/02/wat-gigantic-duck.jpg',
+  '( ͠° ͟ʖ ͡°)'
 ]
 
 module.exports = (robot) ->
