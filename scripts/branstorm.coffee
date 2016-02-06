@@ -99,4 +99,4 @@ module.exports = (robot) ->
     res.send "http://i.imgur.com/qjujW6d.png"
   # Xzibit - if string contains "put a [word] in your [word]", show image of Xzibit.
   robot.hear /put a (.*) in your (.*)/i, (res) ->
-    res.send "https://ionetheurbandaily.files.wordpress.com/2011/01/xzibit-1.jpg"
+    res.send "http://www.reactionface.info/sites/default/files/images/1310428349083_0.png"
