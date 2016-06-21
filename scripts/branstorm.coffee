@@ -103,4 +103,3 @@ module.exports = (robot) ->
   # Ludacris - STAND UP!
   robot.hear /(standup|stand up|stand-up)/i ->
     res.send "https://j.gifs.com/ADY99l.gif"
-    res.send "https://www.youtube.com/watch?v=pZG7IK99OvI"
