@@ -102,4 +102,5 @@ module.exports = (robot) ->
     res.send "http://www.reactionface.info/sites/default/files/images/1310428349083_0.png"
   # Ludacris - STAND UP!
   robot.hear /(standup|stand up|stand-up)/i, (res) ->
+    res.send "When I move, you move (just like that)"
     res.send "https://j.gifs.com/ADY99l.gif"
