@@ -105,7 +105,7 @@ module.exports = (robot) ->
     res.send "When I move, you move (just like that)"
     res.send "https://j.gifs.com/ADY99l.gif"
   # Thank the maker!
-  robot.hear /(joe|ekiert|smokingjoe)/i, (res) ->
+  robot.hear /(\bjoe\b|\bekiert\b|\bsmokinjoe\b)/i, (res) ->
     res.send "Thank the maker!"
     res.send "http://img.gawkerassets.com/img/17dz18u6h2n70jpg/original.jpg"
     res.send "https://github.com/smokinjoe"
