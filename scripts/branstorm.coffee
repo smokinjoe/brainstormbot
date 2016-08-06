@@ -52,7 +52,7 @@ simpsons = [
 
 module.exports = (robot) ->
   # Disco ball!
-  robot.hear /disco form/i, (res) ->
+  robot.hear /disco form|disco/i, (res) ->
     res.send "https://circa71.files.wordpress.com/2012/02/discoball3-1.gif"
   # Disco Inferno!!
   robot.hear /disco inferno/i, (res) ->
